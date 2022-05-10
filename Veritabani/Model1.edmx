@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebHastaneRandevuSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_Branslar">
+          <Key>
+            <PropertyRef Name="Bransid" />
+          </Key>
+          <Property Name="Bransid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BransAd" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Cinsiyet">
+          <Key>
+            <PropertyRef Name="Cinsiyetid" />
+          </Key>
+          <Property Name="Cinsiyetid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cinsiyet" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorAsi">
+          <Key>
+            <PropertyRef Name="DoktorAsiid" />
+          </Key>
+          <Property Name="DoktorAsiid" Type="int" Nullable="false" />
+          <Property Name="DoktorAsiAd" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorAsiSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorAsiTc" Type="char" MaxLength="11" />
+          <Property Name="DoktorAsiSifre" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorAsiTuridFk" Type="int" />
+          <Property Name="KullaniciidFk" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorCocuk">
+          <Key>
+            <PropertyRef Name="DoktorCocukid" />
+          </Key>
+          <Property Name="DoktorCocukid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoktorCocukAd" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorCocukSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorCocukTc" Type="char" MaxLength="11" />
+          <Property Name="DoktorCocukSifre" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorCocukTuridFk" Type="int" />
+          <Property Name="KullaniciidFk" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorYetiskin">
+          <Key>
+            <PropertyRef Name="DoktorYetiskinid" />
+          </Key>
+          <Property Name="DoktorYetiskinid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoktorYetiskinAd" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorYetiskinSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="BransidFk" Type="int" />
+          <Property Name="DoktorYetiskinTc" Type="char" MaxLength="11" />
+          <Property Name="DoktorYetiskinSifre" Type="varchar" MaxLength="50" />
+          <Property Name="DoktorYetiskinTuridFk" Type="int" />
+          <Property Name="KullaniciidFk" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Hastalar">
+          <Key>
+            <PropertyRef Name="Hastaid" />
+          </Key>
+          <Property Name="Hastaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HastaAd" Type="varchar" MaxLength="50" />
+          <Property Name="HastaSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="HastaTc" Type="char" MaxLength="11" />
+          <Property Name="HastaTelefon" Type="varchar" MaxLength="11" />
+          <Property Name="HastaSifre" Type="varchar" MaxLength="50" />
+          <Property Name="CinsiyetidFk" Type="int" />
+          <Property Name="KullaniciidFk" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Kullanici">
+          <Key>
+            <PropertyRef Name="Kullaniciid" />
+          </Key>
+          <Property Name="Kullaniciid" Type="int" Nullable="false" />
+          <Property Name="KullaniciAd" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="Menuid" />
+          </Key>
+          <Property Name="Menuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuAdi" Type="varchar(max)" />
+          <Property Name="MenuAdres" Type="varchar(max)" />
+          <Property Name="MenuSira" Type="int" />
+          <Property Name="MenuYetki" Type="varchar" MaxLength="50" />
+          <Property Name="MenuDurum" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Tbl_Randevular">
+          <Key>
+            <PropertyRef Name="Randevuid" />
+          </Key>
+          <Property Name="Randevuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RandevuTarih" Type="varchar" MaxLength="10" />
+          <Property Name="RandevuSaat" Type="varchar" MaxLength="5" />
+          <Property Name="RandevuTur" Type="varchar" MaxLength="50" />
+          <Property Name="RandevuDoktor" Type="varchar" MaxLength="50" />
+          <Property Name="RandevuDurum" Type="bit" />
+          <Property Name="RandevuBrans" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Sekreterler">
+          <Key>
+            <PropertyRef Name="Sekreterid" />
+          </Key>
+          <Property Name="Sekreterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SekreterAd" Type="varchar" MaxLength="50" />
+          <Property Name="SekreterSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="SekreterTc" Type="char" MaxLength="11" />
+          <Property Name="SekreterSifre" Type="varchar" MaxLength="50" />
+          <Property Name="KullaniciidFk" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Tur">
+          <Key>
+            <PropertyRef Name="Turid" />
+          </Key>
+          <Property Name="Turid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TurAd" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK_Tbl_DoktorAsi_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorAsi" Type="Self.Tbl_DoktorAsi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorAsi">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorAsi_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorAsi" Type="Self.Tbl_DoktorAsi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorAsi">
+              <PropertyRef Name="DoktorAsiTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorCocuk_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorCocuk" Type="Self.Tbl_DoktorCocuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorCocuk">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorCocuk_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorCocuk" Type="Self.Tbl_DoktorCocuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorCocuk">
+              <PropertyRef Name="DoktorCocukTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Branslar">
+          <End Role="Tbl_Branslar" Type="Self.Tbl_Branslar" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Branslar">
+              <PropertyRef Name="Bransid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="BransidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="DoktorYetiskinTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Hastalar_Tbl_Cinsiyet">
+          <End Role="Tbl_Cinsiyet" Type="Self.Tbl_Cinsiyet" Multiplicity="0..1" />
+          <End Role="Tbl_Hastalar" Type="Self.Tbl_Hastalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Cinsiyet">
+              <PropertyRef Name="Cinsiyetid" />
+            </Principal>
+            <Dependent Role="Tbl_Hastalar">
+              <PropertyRef Name="CinsiyetidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Hastalar_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_Hastalar" Type="Self.Tbl_Hastalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_Hastalar">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sekreterler_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_Sekreterler" Type="Self.Tbl_Sekreterler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_Sekreterler">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebHastaneRandevuSistemiModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Branslar" EntityType="Self.Tbl_Branslar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Cinsiyet" EntityType="Self.Tbl_Cinsiyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_DoktorAsi" EntityType="Self.Tbl_DoktorAsi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_DoktorCocuk" EntityType="Self.Tbl_DoktorCocuk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_DoktorYetiskin" EntityType="Self.Tbl_DoktorYetiskin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Hastalar" EntityType="Self.Tbl_Hastalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Kullanici" EntityType="Self.Tbl_Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Randevular" EntityType="Self.Tbl_Randevular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Sekreterler" EntityType="Self.Tbl_Sekreterler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Tur" EntityType="Self.Tbl_Tur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_DoktorAsi_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorAsi_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorAsi" EntitySet="Tbl_DoktorAsi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorAsi_Tbl_Tur" Association="Self.FK_Tbl_DoktorAsi_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorAsi" EntitySet="Tbl_DoktorAsi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorCocuk_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorCocuk_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorCocuk" EntitySet="Tbl_DoktorCocuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorCocuk_Tbl_Tur" Association="Self.FK_Tbl_DoktorCocuk_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorCocuk" EntitySet="Tbl_DoktorCocuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Branslar" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Branslar">
+            <End Role="Tbl_Branslar" EntitySet="Tbl_Branslar" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Tur" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Hastalar_Tbl_Cinsiyet" Association="Self.FK_Tbl_Hastalar_Tbl_Cinsiyet">
+            <End Role="Tbl_Cinsiyet" EntitySet="Tbl_Cinsiyet" />
+            <End Role="Tbl_Hastalar" EntitySet="Tbl_Hastalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Hastalar_Tbl_Kullanici" Association="Self.FK_Tbl_Hastalar_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_Hastalar" EntitySet="Tbl_Hastalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sekreterler_Tbl_Kullanici" Association="Self.FK_Tbl_Sekreterler_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_Sekreterler" EntitySet="Tbl_Sekreterler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebHastaneRandevuSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Branslar">
+          <Key>
+            <PropertyRef Name="Bransid" />
+          </Key>
+          <Property Name="Bransid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BransAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_DoktorYetiskin" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Branslar" FromRole="Tbl_Branslar" ToRole="Tbl_DoktorYetiskin" />
+        </EntityType>
+        <EntityType Name="Tbl_Cinsiyet">
+          <Key>
+            <PropertyRef Name="Cinsiyetid" />
+          </Key>
+          <Property Name="Cinsiyetid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Hastalar" Relationship="Self.FK_Tbl_Hastalar_Tbl_Cinsiyet" FromRole="Tbl_Cinsiyet" ToRole="Tbl_Hastalar" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorAsi">
+          <Key>
+            <PropertyRef Name="DoktorAsiid" />
+          </Key>
+          <Property Name="DoktorAsiid" Type="Int32" Nullable="false" />
+          <Property Name="DoktorAsiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorAsiSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorAsiTc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="DoktorAsiSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorAsiTuridFk" Type="Int32" />
+          <Property Name="KullaniciidFk" Type="Int32" />
+          <NavigationProperty Name="Tbl_Kullanici" Relationship="Self.FK_Tbl_DoktorAsi_Tbl_Kullanici" FromRole="Tbl_DoktorAsi" ToRole="Tbl_Kullanici" />
+          <NavigationProperty Name="Tbl_Tur" Relationship="Self.FK_Tbl_DoktorAsi_Tbl_Tur" FromRole="Tbl_DoktorAsi" ToRole="Tbl_Tur" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorCocuk">
+          <Key>
+            <PropertyRef Name="DoktorCocukid" />
+          </Key>
+          <Property Name="DoktorCocukid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoktorCocukAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorCocukSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorCocukTc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="DoktorCocukSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorCocukTuridFk" Type="Int32" />
+          <Property Name="KullaniciidFk" Type="Int32" />
+          <NavigationProperty Name="Tbl_Kullanici" Relationship="Self.FK_Tbl_DoktorCocuk_Tbl_Kullanici" FromRole="Tbl_DoktorCocuk" ToRole="Tbl_Kullanici" />
+          <NavigationProperty Name="Tbl_Tur" Relationship="Self.FK_Tbl_DoktorCocuk_Tbl_Tur" FromRole="Tbl_DoktorCocuk" ToRole="Tbl_Tur" />
+        </EntityType>
+        <EntityType Name="Tbl_DoktorYetiskin">
+          <Key>
+            <PropertyRef Name="DoktorYetiskinid" />
+          </Key>
+          <Property Name="DoktorYetiskinid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoktorYetiskinAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorYetiskinSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BransidFk" Type="Int32" />
+          <Property Name="DoktorYetiskinTc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="DoktorYetiskinSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoktorYetiskinTuridFk" Type="Int32" />
+          <Property Name="KullaniciidFk" Type="Int32" />
+          <NavigationProperty Name="Tbl_Branslar" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Branslar" FromRole="Tbl_DoktorYetiskin" ToRole="Tbl_Branslar" />
+          <NavigationProperty Name="Tbl_Kullanici" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Kullanici" FromRole="Tbl_DoktorYetiskin" ToRole="Tbl_Kullanici" />
+          <NavigationProperty Name="Tbl_Tur" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Tur" FromRole="Tbl_DoktorYetiskin" ToRole="Tbl_Tur" />
+        </EntityType>
+        <EntityType Name="Tbl_Hastalar">
+          <Key>
+            <PropertyRef Name="Hastaid" />
+          </Key>
+          <Property Name="Hastaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HastaAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HastaSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HastaTc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="HastaTelefon" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="HastaSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CinsiyetidFk" Type="Int32" />
+          <Property Name="KullaniciidFk" Type="Int32" />
+          <NavigationProperty Name="Tbl_Cinsiyet" Relationship="Self.FK_Tbl_Hastalar_Tbl_Cinsiyet" FromRole="Tbl_Hastalar" ToRole="Tbl_Cinsiyet" />
+          <NavigationProperty Name="Tbl_Kullanici" Relationship="Self.FK_Tbl_Hastalar_Tbl_Kullanici" FromRole="Tbl_Hastalar" ToRole="Tbl_Kullanici" />
+        </EntityType>
+        <EntityType Name="Tbl_Kullanici">
+          <Key>
+            <PropertyRef Name="Kullaniciid" />
+          </Key>
+          <Property Name="Kullaniciid" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_DoktorAsi" Relationship="Self.FK_Tbl_DoktorAsi_Tbl_Kullanici" FromRole="Tbl_Kullanici" ToRole="Tbl_DoktorAsi" />
+          <NavigationProperty Name="Tbl_DoktorCocuk" Relationship="Self.FK_Tbl_DoktorCocuk_Tbl_Kullanici" FromRole="Tbl_Kullanici" ToRole="Tbl_DoktorCocuk" />
+          <NavigationProperty Name="Tbl_DoktorYetiskin" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Kullanici" FromRole="Tbl_Kullanici" ToRole="Tbl_DoktorYetiskin" />
+          <NavigationProperty Name="Tbl_Hastalar" Relationship="Self.FK_Tbl_Hastalar_Tbl_Kullanici" FromRole="Tbl_Kullanici" ToRole="Tbl_Hastalar" />
+          <NavigationProperty Name="Tbl_Sekreterler" Relationship="Self.FK_Tbl_Sekreterler_Tbl_Kullanici" FromRole="Tbl_Kullanici" ToRole="Tbl_Sekreterler" />
+        </EntityType>
+        <EntityType Name="Tbl_Menu">
+          <Key>
+            <PropertyRef Name="Menuid" />
+          </Key>
+          <Property Name="Menuid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MenuAdres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MenuSira" Type="Int32" />
+          <Property Name="MenuYetki" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MenuDurum" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Randevular">
+          <Key>
+            <PropertyRef Name="Randevuid" />
+          </Key>
+          <Property Name="Randevuid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RandevuTarih" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RandevuSaat" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="RandevuTur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RandevuDoktor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RandevuDurum" Type="Boolean" />
+          <Property Name="RandevuBrans" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Sekreterler">
+          <Key>
+            <PropertyRef Name="Sekreterid" />
+          </Key>
+          <Property Name="Sekreterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SekreterAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SekreterSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SekreterTc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="SekreterSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KullaniciidFk" Type="Int32" />
+          <NavigationProperty Name="Tbl_Kullanici" Relationship="Self.FK_Tbl_Sekreterler_Tbl_Kullanici" FromRole="Tbl_Sekreterler" ToRole="Tbl_Kullanici" />
+        </EntityType>
+        <EntityType Name="Tbl_Tur">
+          <Key>
+            <PropertyRef Name="Turid" />
+          </Key>
+          <Property Name="Turid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TurAd" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_DoktorAsi" Relationship="Self.FK_Tbl_DoktorAsi_Tbl_Tur" FromRole="Tbl_Tur" ToRole="Tbl_DoktorAsi" />
+          <NavigationProperty Name="Tbl_DoktorCocuk" Relationship="Self.FK_Tbl_DoktorCocuk_Tbl_Tur" FromRole="Tbl_Tur" ToRole="Tbl_DoktorCocuk" />
+          <NavigationProperty Name="Tbl_DoktorYetiskin" Relationship="Self.FK_Tbl_DoktorYetiskin_Tbl_Tur" FromRole="Tbl_Tur" ToRole="Tbl_DoktorYetiskin" />
+        </EntityType>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Branslar">
+          <End Role="Tbl_Branslar" Type="Self.Tbl_Branslar" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Branslar">
+              <PropertyRef Name="Bransid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="BransidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Hastalar_Tbl_Cinsiyet">
+          <End Role="Tbl_Cinsiyet" Type="Self.Tbl_Cinsiyet" Multiplicity="0..1" />
+          <End Role="Tbl_Hastalar" Type="Self.Tbl_Hastalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Cinsiyet">
+              <PropertyRef Name="Cinsiyetid" />
+            </Principal>
+            <Dependent Role="Tbl_Hastalar">
+              <PropertyRef Name="CinsiyetidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorAsi_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorAsi" Type="Self.Tbl_DoktorAsi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorAsi">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorAsi_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorAsi" Type="Self.Tbl_DoktorAsi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorAsi">
+              <PropertyRef Name="DoktorAsiTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorCocuk_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorCocuk" Type="Self.Tbl_DoktorCocuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorCocuk">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorCocuk_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorCocuk" Type="Self.Tbl_DoktorCocuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorCocuk">
+              <PropertyRef Name="DoktorCocukTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_DoktorYetiskin_Tbl_Tur">
+          <End Role="Tbl_Tur" Type="Self.Tbl_Tur" Multiplicity="0..1" />
+          <End Role="Tbl_DoktorYetiskin" Type="Self.Tbl_DoktorYetiskin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tur">
+              <PropertyRef Name="Turid" />
+            </Principal>
+            <Dependent Role="Tbl_DoktorYetiskin">
+              <PropertyRef Name="DoktorYetiskinTuridFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Hastalar_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_Hastalar" Type="Self.Tbl_Hastalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_Hastalar">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Sekreterler_Tbl_Kullanici">
+          <End Role="Tbl_Kullanici" Type="Self.Tbl_Kullanici" Multiplicity="0..1" />
+          <End Role="Tbl_Sekreterler" Type="Self.Tbl_Sekreterler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Kullanici">
+              <PropertyRef Name="Kullaniciid" />
+            </Principal>
+            <Dependent Role="Tbl_Sekreterler">
+              <PropertyRef Name="KullaniciidFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebHastaneRandevuSistemiEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tbl_Branslar" EntityType="Self.Tbl_Branslar" />
+          <EntitySet Name="Tbl_Cinsiyet" EntityType="Self.Tbl_Cinsiyet" />
+          <EntitySet Name="Tbl_DoktorAsi" EntityType="Self.Tbl_DoktorAsi" />
+          <EntitySet Name="Tbl_DoktorCocuk" EntityType="Self.Tbl_DoktorCocuk" />
+          <EntitySet Name="Tbl_DoktorYetiskin" EntityType="Self.Tbl_DoktorYetiskin" />
+          <EntitySet Name="Tbl_Hastalar" EntityType="Self.Tbl_Hastalar" />
+          <EntitySet Name="Tbl_Kullanici" EntityType="Self.Tbl_Kullanici" />
+          <EntitySet Name="Tbl_Menu" EntityType="Self.Tbl_Menu" />
+          <EntitySet Name="Tbl_Randevular" EntityType="Self.Tbl_Randevular" />
+          <EntitySet Name="Tbl_Sekreterler" EntityType="Self.Tbl_Sekreterler" />
+          <EntitySet Name="Tbl_Tur" EntityType="Self.Tbl_Tur" />
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Branslar" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Branslar">
+            <End Role="Tbl_Branslar" EntitySet="Tbl_Branslar" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Hastalar_Tbl_Cinsiyet" Association="Self.FK_Tbl_Hastalar_Tbl_Cinsiyet">
+            <End Role="Tbl_Cinsiyet" EntitySet="Tbl_Cinsiyet" />
+            <End Role="Tbl_Hastalar" EntitySet="Tbl_Hastalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorAsi_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorAsi_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorAsi" EntitySet="Tbl_DoktorAsi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorAsi_Tbl_Tur" Association="Self.FK_Tbl_DoktorAsi_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorAsi" EntitySet="Tbl_DoktorAsi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorCocuk_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorCocuk_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorCocuk" EntitySet="Tbl_DoktorCocuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorCocuk_Tbl_Tur" Association="Self.FK_Tbl_DoktorCocuk_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorCocuk" EntitySet="Tbl_DoktorCocuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Kullanici" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_DoktorYetiskin_Tbl_Tur" Association="Self.FK_Tbl_DoktorYetiskin_Tbl_Tur">
+            <End Role="Tbl_Tur" EntitySet="Tbl_Tur" />
+            <End Role="Tbl_DoktorYetiskin" EntitySet="Tbl_DoktorYetiskin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Hastalar_Tbl_Kullanici" Association="Self.FK_Tbl_Hastalar_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_Hastalar" EntitySet="Tbl_Hastalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Sekreterler_Tbl_Kullanici" Association="Self.FK_Tbl_Sekreterler_Tbl_Kullanici">
+            <End Role="Tbl_Kullanici" EntitySet="Tbl_Kullanici" />
+            <End Role="Tbl_Sekreterler" EntitySet="Tbl_Sekreterler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebHastaneRandevuSistemiModelStoreContainer" CdmEntityContainer="WebHastaneRandevuSistemiEntities4">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Branslar">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Branslar">
+              <MappingFragment StoreEntitySet="Tbl_Branslar">
+                <ScalarProperty Name="Bransid" ColumnName="Bransid" />
+                <ScalarProperty Name="BransAd" ColumnName="BransAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Cinsiyet">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Cinsiyet">
+              <MappingFragment StoreEntitySet="Tbl_Cinsiyet">
+                <ScalarProperty Name="Cinsiyetid" ColumnName="Cinsiyetid" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DoktorAsi">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_DoktorAsi">
+              <MappingFragment StoreEntitySet="Tbl_DoktorAsi">
+                <ScalarProperty Name="DoktorAsiid" ColumnName="DoktorAsiid" />
+                <ScalarProperty Name="DoktorAsiAd" ColumnName="DoktorAsiAd" />
+                <ScalarProperty Name="DoktorAsiSoyad" ColumnName="DoktorAsiSoyad" />
+                <ScalarProperty Name="DoktorAsiTc" ColumnName="DoktorAsiTc" />
+                <ScalarProperty Name="DoktorAsiSifre" ColumnName="DoktorAsiSifre" />
+                <ScalarProperty Name="DoktorAsiTuridFk" ColumnName="DoktorAsiTuridFk" />
+                <ScalarProperty Name="KullaniciidFk" ColumnName="KullaniciidFk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DoktorCocuk">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_DoktorCocuk">
+              <MappingFragment StoreEntitySet="Tbl_DoktorCocuk">
+                <ScalarProperty Name="DoktorCocukid" ColumnName="DoktorCocukid" />
+                <ScalarProperty Name="DoktorCocukAd" ColumnName="DoktorCocukAd" />
+                <ScalarProperty Name="DoktorCocukSoyad" ColumnName="DoktorCocukSoyad" />
+                <ScalarProperty Name="DoktorCocukTc" ColumnName="DoktorCocukTc" />
+                <ScalarProperty Name="DoktorCocukSifre" ColumnName="DoktorCocukSifre" />
+                <ScalarProperty Name="DoktorCocukTuridFk" ColumnName="DoktorCocukTuridFk" />
+                <ScalarProperty Name="KullaniciidFk" ColumnName="KullaniciidFk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DoktorYetiskin">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_DoktorYetiskin">
+              <MappingFragment StoreEntitySet="Tbl_DoktorYetiskin">
+                <ScalarProperty Name="DoktorYetiskinid" ColumnName="DoktorYetiskinid" />
+                <ScalarProperty Name="DoktorYetiskinAd" ColumnName="DoktorYetiskinAd" />
+                <ScalarProperty Name="DoktorYetiskinSoyad" ColumnName="DoktorYetiskinSoyad" />
+                <ScalarProperty Name="BransidFk" ColumnName="BransidFk" />
+                <ScalarProperty Name="DoktorYetiskinTc" ColumnName="DoktorYetiskinTc" />
+                <ScalarProperty Name="DoktorYetiskinSifre" ColumnName="DoktorYetiskinSifre" />
+                <ScalarProperty Name="DoktorYetiskinTuridFk" ColumnName="DoktorYetiskinTuridFk" />
+                <ScalarProperty Name="KullaniciidFk" ColumnName="KullaniciidFk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Hastalar">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Hastalar">
+              <MappingFragment StoreEntitySet="Tbl_Hastalar">
+                <ScalarProperty Name="Hastaid" ColumnName="Hastaid" />
+                <ScalarProperty Name="HastaAd" ColumnName="HastaAd" />
+                <ScalarProperty Name="HastaSoyad" ColumnName="HastaSoyad" />
+                <ScalarProperty Name="HastaTc" ColumnName="HastaTc" />
+                <ScalarProperty Name="HastaTelefon" ColumnName="HastaTelefon" />
+                <ScalarProperty Name="HastaSifre" ColumnName="HastaSifre" />
+                <ScalarProperty Name="CinsiyetidFk" ColumnName="CinsiyetidFk" />
+                <ScalarProperty Name="KullaniciidFk" ColumnName="KullaniciidFk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Kullanici">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Kullanici">
+              <MappingFragment StoreEntitySet="Tbl_Kullanici">
+                <ScalarProperty Name="Kullaniciid" ColumnName="Kullaniciid" />
+                <ScalarProperty Name="KullaniciAd" ColumnName="KullaniciAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Menu">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Menu">
+              <MappingFragment StoreEntitySet="Tbl_Menu">
+                <ScalarProperty Name="Menuid" ColumnName="Menuid" />
+                <ScalarProperty Name="MenuAdi" ColumnName="MenuAdi" />
+                <ScalarProperty Name="MenuAdres" ColumnName="MenuAdres" />
+                <ScalarProperty Name="MenuSira" ColumnName="MenuSira" />
+                <ScalarProperty Name="MenuYetki" ColumnName="MenuYetki" />
+                <ScalarProperty Name="MenuDurum" ColumnName="MenuDurum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Randevular">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Randevular">
+              <MappingFragment StoreEntitySet="Tbl_Randevular">
+                <ScalarProperty Name="Randevuid" ColumnName="Randevuid" />
+                <ScalarProperty Name="RandevuTarih" ColumnName="RandevuTarih" />
+                <ScalarProperty Name="RandevuSaat" ColumnName="RandevuSaat" />
+                <ScalarProperty Name="RandevuTur" ColumnName="RandevuTur" />
+                <ScalarProperty Name="RandevuDoktor" ColumnName="RandevuDoktor" />
+                <ScalarProperty Name="RandevuDurum" ColumnName="RandevuDurum" />
+                <ScalarProperty Name="RandevuBrans" ColumnName="RandevuBrans" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Sekreterler">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Sekreterler">
+              <MappingFragment StoreEntitySet="Tbl_Sekreterler">
+                <ScalarProperty Name="Sekreterid" ColumnName="Sekreterid" />
+                <ScalarProperty Name="SekreterAd" ColumnName="SekreterAd" />
+                <ScalarProperty Name="SekreterSoyad" ColumnName="SekreterSoyad" />
+                <ScalarProperty Name="SekreterTc" ColumnName="SekreterTc" />
+                <ScalarProperty Name="SekreterSifre" ColumnName="SekreterSifre" />
+                <ScalarProperty Name="KullaniciidFk" ColumnName="KullaniciidFk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Tur">
+            <EntityTypeMapping TypeName="WebHastaneRandevuSistemiModel.Tbl_Tur">
+              <MappingFragment StoreEntitySet="Tbl_Tur">
+                <ScalarProperty Name="Turid" ColumnName="Turid" />
+                <ScalarProperty Name="TurAd" ColumnName="TurAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -29,8 +29,15 @@
                     <asp:TextBox ID="TextBox2" runat="server" Width="100%"></asp:TextBox>
                 </td>
             </tr>
+            <tr>
+                <td style="width:30%">YETKİ</td>
+                <td>
+                    <asp:TextBox ID="TextBox3" runat="server" Width="100%"></asp:TextBox>
+                </td>
+            </tr>
+
         </table>
-        <asp:Button ID="Button1" runat="server" Height="33px" Text="GİRİŞ YAP" Width="130px" BackColor="Red" />
+        <asp:Button ID="Button1" runat="server" Height="33px" Text="GİRİŞ YAP" Width="130px" BackColor="Red" OnClick="Button1_Click" />
         <p>
             <asp:Button ID="Button2" runat="server" Height="30px" Text="ŞİFREMİ UNUTTUM" Width="130px" BackColor="Red" />
         </p>

@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Yonetim.master.cs" Inherits="HastaneRandevuSistemi.Yonetim" %>
+
+<%@ Register Src="~/Menu.ascx" TagPrefix="uc1" TagName="Menu" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="background-color:red; text-align: center; vertical-align: middle; font-weight: 100; color: #FFFFFF; height: 68px; line-height: 68px;">
+            HASTANE RANDEVU SİSTEMİ>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
+
+            </asp:ContentPlaceHolder>
+        </div>
+        <uc1:Menu runat="server" id="Menu" />
+    </form>
+</body>
+</html>

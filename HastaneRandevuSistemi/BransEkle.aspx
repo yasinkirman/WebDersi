@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BranşEkle.aspx.cs" Inherits="HastaneRandevuSistemi.BranşEkle" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BransEkle.aspx.cs" Inherits="HastaneRandevuSistemi.BransEkle" %>
 
 <!DOCTYPE html>
 

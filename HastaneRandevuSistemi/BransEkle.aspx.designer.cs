@@ -11,7 +11,7 @@ namespace HastaneRandevuSistemi
 {
 
 
-    public partial class BranşEkle
+    public partial class BransEkle
     {
 
         /// <summary>

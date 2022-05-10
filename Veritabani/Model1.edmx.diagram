@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6aa6d683b2cb4ecb942bbfb5368624d5" Name="Diagram1">
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Branslar" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Cinsiyet" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_DoktorAsi" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_DoktorCocuk" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_DoktorYetiskin" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Hastalar" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Kullanici" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Menu" Width="1.5" PointX="4.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Randevular" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Sekreterler" Width="1.5" PointX="3" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebHastaneRandevuSistemiModel.Tbl_Tur" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorYetiskin_Tbl_Branslar" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_Hastalar_Tbl_Cinsiyet" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorAsi_Tbl_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorAsi_Tbl_Tur" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorCocuk_Tbl_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorCocuk_Tbl_Tur" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorYetiskin_Tbl_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_DoktorYetiskin_Tbl_Tur" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_Hastalar_Tbl_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="WebHastaneRandevuSistemiModel.FK_Tbl_Sekreterler_Tbl_Kullanici" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
